@@ -1,7 +1,7 @@
 
 '''PRACTICA 1 FP'''
 
-import string
+import string 
 import os 
 
 file_path = os.path.join(os.path.dirname(__file__), '..', 'lecturas', 'lin_quijote.txt')
@@ -126,3 +126,5 @@ if resultado is not None:
     print(f'la longitud promedio de las lineas del segundo archivo es: {resultado}')
 else:
     print("el segundo archivo no existe o esta vacio")
+    
+    

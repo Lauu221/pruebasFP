@@ -11,7 +11,7 @@ file_path4 = os.path.join(os.path.dirname(__file__), '..', 'lecturas', 'vacio.cs
 file_path = os.path.normpath(file_path)
 
 
-# ejercicio 6
+print('ejercicio 6:')
 
 def contar_palabra(file_path: str, cad: str, separador: str = ' ')-> int:
     try:
@@ -35,7 +35,7 @@ print(f'la palabra {cad} se repite {resultado} veces')
 print('................')
 '--------------------------' 
 
-# ejercicio 7
+print('ejercicio 7:')
 
 def buscar_lineas(file_path: str, cad: str)-> list:
     lineas_cadenas = []
@@ -60,7 +60,7 @@ for linea in lineas_encontradas:
 print('................')
 '--------------------------'
 
-# ejercicio 8
+print('ejercicio 8:')
 
 
 def encontrar_palabras(file_path2: str)-> list:
@@ -84,7 +84,7 @@ print('................')
 
 '----------------------------'
 
-# ejercicio 9
+print('ejercicio 9:')
 
 from typing import Optional
 
@@ -100,6 +100,7 @@ def longitud_promedio_lineas(file_path3: str)-> Optional[float]:
             
             for linea in lineas:
                 linea = linea.strip()
+                linea = linea.split(",")
                 longitud_linea = len(linea)
                 total_longitud += longitud_linea
                 numero_lineas += 1

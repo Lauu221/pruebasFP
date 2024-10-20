@@ -41,7 +41,7 @@ print('................')
 
 print('ejercicio 3:')
 n = 4
-K = 2
+k = 2
 '''resultado'''
 resultado = numero_comb(n, k)
 print(f'el numero combinatorio de {n} y {k} es {resultado}')

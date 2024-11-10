@@ -28,10 +28,10 @@ class Lista_ordenada_sin_repeticion(AgregadoLineal[E], Generic[E,R]):
     
     def add(self, e: E) -> None:
         self._added_order.append(e)
-        if e in self._elements:
+        if e in self._elements: # comprueba si el elemento e ya existe en la lista
             print(f'el elemento {e} ya exixte en la lista, se elimina con remove()')
             return
-        index = self.__index_order(e)
+        index = self.__index_order(e) # se llama al metodo index para calcular la posicion donde deberia insertarse e
         self._elements.insert(index, e)
         print(f'se añade {e}')
         

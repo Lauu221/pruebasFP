@@ -39,6 +39,12 @@ class Lista_ordenada(AgregadoLineal[E]): # creamos la clase lista ordenada que m
         assert len(self._elements) > 0, 'el agregado no existe'
         return self._elements.pop(0)
     
+    def remove_all(self):
+        removed_elements = self._elements[:]
+        self._elements.clear()
+        return removed_elements
+    
+    
     def added_order(self) -> List[E]:
         return self._added_order
     

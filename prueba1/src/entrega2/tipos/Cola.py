@@ -19,7 +19,7 @@ class cola(AgregadoLineal[E]):
     
     def add(self, e: E)-> None:
         self._elements.append(e)
-        print(f'elemento añadido: {e}')
+       
     
     def add_all(self, elements: List[E]) -> None:
         for e in elements:

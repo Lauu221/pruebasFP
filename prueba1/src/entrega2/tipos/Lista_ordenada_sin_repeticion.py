@@ -35,7 +35,8 @@ class Lista_ordenada_sin_repeticion(AgregadoLineal[E], Generic[E,R]):
         self._elements.insert(index, e)
         print(f'se añade {e}')
         
-
+    def added_order(self) -> List[E]:
+        return self._added_order
     
     def remove_all(self) -> List[E]:
         removed_elements = []

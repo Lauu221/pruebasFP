@@ -113,7 +113,7 @@ def pruebas_cola_con_limite():
     except OverflowError as e:
         print("Error esperado al agregar en una cola llena:", e)
 
-    #
+    
     print("\nPrueba remove:")
     print("Elemento eliminado:", cola.remove())  
     print("Elemento eliminado:", cola.remove())  

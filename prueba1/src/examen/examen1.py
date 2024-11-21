@@ -7,6 +7,7 @@ import os
 import math
 file_path2 = os.path.join(os.path.dirname(__file__), '..', 'lecturas', 'archivo_palabras.txt')
 
+
 ''' ejercicio A '''
 
 print('ejercicio A')

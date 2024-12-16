@@ -7,11 +7,11 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from funciones.funcionesAct import producto_sec
-from funciones.funcionesAct import secuencia_geo
-from funciones.funcionesAct import numero_comb
-from funciones.funcionesAct import ecuacion
-from funciones.funcionesAct import metodo_newton
+from src.funciones.funcionesAct import producto_sec
+from src.funciones.funcionesAct import secuencia_geo
+from src.funciones.funcionesAct import numero_comb
+from src.funciones.funcionesAct import ecuacion
+from src.funciones.funcionesAct import metodo_newton
 
 
 ''' ejercicio 1 '''

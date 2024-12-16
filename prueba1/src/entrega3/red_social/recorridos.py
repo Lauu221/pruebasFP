@@ -64,90 +64,57 @@ función reconstruir_camino(predecesores, destino):
     devolver camino
 
 '''
-from typing import TypeVar, List, Set, Dict, Deque
+from typing import TypeVar, List, Generic
 
 from src.entrega3.red_social.grafo import Grafo
-from src.entrega2.tipos.Cola import cola 
-from src.entrega2.tipos.Pila import Pila 
+
 
 # Importa la clase Grafo desde su módulo
 
 V = TypeVar('V')  # Tipo de los vértices
 E = TypeVar('E')  # Tipo de las aristas
 
-def bfs(grafo: Grafo[V, E], inicio: V, destino: V) -> List[V]:
-    
-    if inicio == destino:
-        return [inicio]
+class Recorrido(Generic[V, E]):
+    def __init__(self, grafo: Grafo[V, E], origen: V):
+        self._grafo = grafo
+        self._origen = origen
+        self._tree = {}  # Estructura para almacenar el árbol de recorrido
+        self._path = []  # Lista para almacenar el camino
+        self._init_recorrido()
 
-    cola = Deque([inicio])
-    visitados: Set[V] = set([inicio])
-    predecesores: Dict[V, V] = {}
+    def _init_recorrido(self):
+        """Método para inicializar el recorrido, comenzando desde el origen"""
+        # Iniciar el árbol con el origen
+        self._tree[self._origen] = (None, 0.0)  # El origen no tiene predecesor y su distancia es 0
+        self._path.append(self._origen)
 
-    while cola:
-        actual = cola.popleft()
+    def bfs(self):
+        """Método de recorrido en amplitud (BFS)"""
+        visited = set()
+        queue = [self._origen]
+        while queue:
+            node = queue.pop(0)
+            if node not in visited:
+                visited.add(node)
+                for neighbor in self._grafo.vertices[node]['vecinos']:
+                    if neighbor not in visited:
+                        self._tree[neighbor] = (node, self._tree[node][1] + 1)
+                        queue.append(neighbor)
+        return self._tree
 
-        for sucesor in grafo.successors(actual):
-            if sucesor not in visitados:
-                visitados.add(sucesor)
-                predecesores[sucesor] = actual
-                cola.append(sucesor)
-
-                if sucesor == destino:
-                    camino = []
-                    while sucesor is not None:
-                        camino.append(sucesor)
-                        sucesor = predecesores.get(sucesor, None)
-                    return camino[::-1]  # Invertir el camino
-
-    
-    return []
-    """
-    Realiza un recorrido en anchura (BFS) desde un vértice inicial hasta un vértice destino usando una Cola.
-    
-    :param grafo: Grafo sobre el que realizar la búsqueda.
-    :param inicio: Vértice inicial.
-    :param destino: Vértice de destino.
-    :return: Lista de vértices en el camino más corto desde inicio a destino, o [] si no hay camino.
-    """
-    
-
-def dfs(grafo: Grafo[V, E], inicio: V, destino: V) -> List[V]:
-    
-    if inicio == destino:
-        return [inicio]
-    
-    pila = [inicio]
-    visitados: Set[V] = set()
-    predecesores: Dict[V, V] = {}
-
-    while pila:
-        actual = pila.pop()
-        
-        if actual == destino:
-            camino = []
-            while actual is not None:
-                camino.append(actual)
-                actual = predecesores.get(actual, None)
-            return camino[::-1]  
-
-        if actual not in visitados:
-            visitados.add(actual)
-
-            for sucesor in grafo.successors(actual):
-                if sucesor not in visitados:
-                    pila.append(sucesor)
-                    predecesores[sucesor] = actual
-
-    return []
-    """
-    Realiza un recorrido en profundidad (DFS) desde un vértice inicial hasta un vértice destino usando una Pila.
-    
-    :param grafo: Grafo sobre el que realizar la búsqueda.
-    :param inicio: Vértice inicial.
-    :param destino: Vértice de destino.
-    :return: Lista de vértices en el camino más corto desde inicio a destino, o [] si no hay camino.
-    """
+    def dfs(self):
+        """Método de recorrido en profundidad (DFS)"""
+        visited = set()
+        stack = [self._origen]
+        while stack:
+            node = stack.pop()
+            if node not in visited:
+                visited.add(node)
+                for neighbor in self._grafo.vertices[node]['vecinos']:
+                    if neighbor not in visited:
+                        self._tree[neighbor] = (node, self._tree[node][1] + 1)
+                        stack.append(neighbor)
+        return self._tree
     
 
 def reconstruir_camino(predecesores: dict, destino: V) -> List[V]:

@@ -89,7 +89,7 @@ class Recorrido(Generic[V, E]):
         self._path.append(self._origen)
 
     def bfs(self):
-        """Método de recorrido en amplitud (BFS)"""
+        
         visited = set()
         queue = [self._origen]
         while queue:
